@@ -1,5 +1,12 @@
-
 #include "Simple28BYJ48.h"
+
+Simple28BYJ48::Simple28BYJ48(int gpio_in1, int gpio_in2, int gpio_in3, int gpio_in4)
+    : in1(gpio_in1)
+    , in2(gpio_in2)
+    , in3(gpio_in3)
+    , in4(gpio_in4)
+{
+}
 
 bool Simple28BYJ48::move_to_pos(int target_pos)
 {
