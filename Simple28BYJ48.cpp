@@ -5,13 +5,6 @@ Simple28BYJ48::Simple28BYJ48(int gpio_in1, int gpio_in2, int gpio_in3, int gpio_
     , in2(gpio_in2)
     , in3(gpio_in3)
     , in4(gpio_in4)
-<<<<<<< HEAD
-=======
-{
-}
-
-bool Simple28BYJ48::move_to_pos(int target_pos)
->>>>>>> 54244254203abda62a864efe075918719140cbd3
 {
 }
 

@@ -10,36 +10,19 @@
  * Tuomas Salokanto
  * stuomas@protonmail.com
  */
-<<<<<<< HEAD
-
+#include <Arduino.h>
 #ifndef SIMPLE28BYJ48_H
 #define SIMPLE28BYJ48_H
-=======
- 
-#ifndef ARDUINO_H
-#define ARDUINO_H
-#include <Arduino.h>
-#endif
->>>>>>> 54244254203abda62a864efe075918719140cbd3
 
 class Simple28BYJ48 {
 public:
     const int in1, in2, in3, in4;
     Simple28BYJ48(int gpio_in1, int gpio_in2, int gpio_in3, int gpio_in4);
-<<<<<<< HEAD
     void set_target_pos(int target) { target_pos = target; }
     void keep_target_pos();
     int get_current_position() { return current_pos; }
     bool is_at_target() { return current_pos == target_pos; }
     void deenergize();
-=======
-    bool move_to_pos(int target_pos);
-    void deenergize();
-    void set_status(bool status) { finished = status; }
-    int get_status() { return finished; }
-    void set_position(int pos) { position = pos; }
-    int get_position() { return position; }
->>>>>>> 54244254203abda62a864efe075918719140cbd3
 private:
     void step(int step_num, int period_us);
     int step_num = 0;
