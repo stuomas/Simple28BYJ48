@@ -1,17 +1,21 @@
-
 #include "Simple28BYJ48.h"
 
-bool Simple28BYJ48::move_to_pos(int target_pos)
+Simple28BYJ48::Simple28BYJ48(int gpio_in1, int gpio_in2, int gpio_in3, int gpio_in4)
+    : in1(gpio_in1)
+    , in2(gpio_in2)
+    , in3(gpio_in3)
+    , in4(gpio_in4)
 {
-    // Half-step mode (8 steps)
-    // Step angle 5.625 -> 64 steps per revolution of the rotor
-    // Gear ratio 63.68395:1
-    // One full revolution of the shaft 64 * 63.68395 ~= 4076
-    int step_num = 0;
-    int start_pos = get_position();
-    int current_pos = start_pos;
-    int i = 1200;
-    while (current_pos != target_pos) {
+}
+
+// Checks that the current position matches with the last
+// acquired target. Call in the main loop. Handles one
+// step at a time so it is essentially non-blocking and new
+// target can be given mid-action.
+void Simple28BYJ48::keep_target_pos()
+{       
+    if (current_pos != target_pos) {
+        int start_pos = current_pos;
         if ((target_pos - start_pos) > 0) {
             step_num++;
             current_pos++;
@@ -21,13 +25,13 @@ bool Simple28BYJ48::move_to_pos(int target_pos)
             current_pos--;
         }
         step_num &= 7; // 8 steps
-        step(step_num, i);
-        set_position(current_pos);
+        step(step_num, 1200);
+    } else {
+        deenergize();
     }
-    deenergize();
-    return true;
 }
 
+// Moves one half-step
 void Simple28BYJ48::step(int step_num, int period_us)
 {
     switch (step_num) {
@@ -83,6 +87,7 @@ void Simple28BYJ48::step(int step_num, int period_us)
     delayMicroseconds(period_us);
 }
 
+// Set all inputs to LOW to de-energize the motor
 void Simple28BYJ48::deenergize()
 {
     digitalWrite(in1, LOW);
