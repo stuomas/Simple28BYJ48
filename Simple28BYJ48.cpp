@@ -1,4 +1,4 @@
-#include "Simple28BYJ48.h"
+#include <Simple28BYJ48.h>
 
 Simple28BYJ48::Simple28BYJ48(int gpio_in1, int gpio_in2, int gpio_in3, int gpio_in4)
     : in1(gpio_in1)

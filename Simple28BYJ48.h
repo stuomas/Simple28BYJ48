@@ -10,9 +10,9 @@
  * Tuomas Salokanto
  * stuomas@protonmail.com
  */
-#include <Arduino.h>
 #ifndef SIMPLE28BYJ48_H
 #define SIMPLE28BYJ48_H
+#include <Arduino.h>
 
 class Simple28BYJ48 {
 public:
@@ -30,4 +30,4 @@ private:
     int current_pos = 0;
 };
 
-#endif /* SIMPLE28BYJ48_H */
+#endif
